@@ -234,14 +234,14 @@ namespace KaydenHunterCheat
             }
 
             List<singleStat> ls = new List<singleStat>();
-            ls.Add(new singleStat() { name = MoneyTextBox.Name, textbox = MoneyTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0xA0 }, sizeInBytes = 4 });
-            ls.Add(new singleStat() { name = XpTextBox.Name, textbox = XpTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0x14 }, sizeInBytes = 4 });
-            ls.Add(new singleStat() { name = SkillTextBox.Name, textbox = SkillTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0x18 }, sizeInBytes = 4 });
-            ls.Add(new singleStat() { name = PerkTextBox.Name, textbox = PerkTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0x1C }, sizeInBytes = 4 });
-            ls.Add(new singleStat() { name = RifleScoreTextBox.Name, textbox = RifleScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0xB4 }, sizeInBytes = 4 });
-            ls.Add(new singleStat() { name = PistolScoreTextBox.Name, textbox = PistolScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0xB8 }, sizeInBytes = 4 });
-            ls.Add(new singleStat() { name = ShotgunScoreTextBox.Name, textbox = ShotgunScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0xBC }, sizeInBytes = 4 });
-            ls.Add(new singleStat() { name = BowScoreTextBox.Name, textbox = BowScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E8B7F8, (IntPtr)0x298, (IntPtr)0xC0 }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = MoneyTextBox.Name, textbox = MoneyTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x650 }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = XpTextBox.Name, textbox = XpTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x5C4 }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = SkillTextBox.Name, textbox = SkillTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x5C8 }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = PerkTextBox.Name, textbox = PerkTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x5CC }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = RifleScoreTextBox.Name, textbox = RifleScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x664 }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = PistolScoreTextBox.Name, textbox = PistolScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x668 }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = ShotgunScoreTextBox.Name, textbox = ShotgunScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x66C }, sizeInBytes = 4 });
+            ls.Add(new singleStat() { name = BowScoreTextBox.Name, textbox = BowScoreTextBox, offset = new List<IntPtr>() { (IntPtr)0x01E6A060, (IntPtr)0x298, (IntPtr)0x670 }, sizeInBytes = 4 });
             ls.Add(new singleStat() { name = HealthTextBox.Name, textbox = HealthTextBox, offset = new List<IntPtr>() { (IntPtr)0x26, (IntPtr)0x21C}, sizeInBytes = 2, ishealth = true, healthOffset = listOfInjections[index].address});
 
             statscan = new StatScanner(ls, mem, gameProcess.MainModule);

@@ -45,7 +45,7 @@ namespace KaydenHunterCheat
             PatternScanner patternscanner = new PatternScanner(hProcess);
             patternscanner.SelectModule(module);
             long timetookms;
-            ulong offset = patternscanner.FindPattern("E9 ? ? ? ? 90 90 90 90 F3 41 0F 10 00 0F", out timetookms); // The pattern scanner works good and finds correct place
+            ulong offset = patternscanner.FindPattern("E9 ? ? ? ? 90 90 90 90 F3 0F 10 84 8B 54 05", out timetookms); // The pattern scanner works good and finds correct place
             if (offset > 0)
             {
                 if (!mem.WriteByteArray((IntPtr)offset, new byte[] { 0xF3, 0x0F, 0x11, 0x84, 0x8B, 0x68, 0x05, 0x00, 0x00 }))
@@ -63,7 +63,7 @@ namespace KaydenHunterCheat
             PatternScanner patternscanner = new PatternScanner(hProcess);
             patternscanner.SelectModule(module);
             long timetookms;
-            ulong offset = patternscanner.FindPattern("F3 0F 11 84 8B 68 05 00 00 F3 41 0F 10 00 0F 2F C2", out timetookms); // The pattern scanner works good and finds correct place
+            ulong offset = patternscanner.FindPattern("F3 0F 11 84 8B 68 05 00 00 F3 0F 10 84 8B 54 05", out timetookms); // The pattern scanner works good and finds correct place
             byte[] newBytes = new byte[9];
             byte[] jmpReltiveBytes = mem.toJmpFormat((IntPtr)offset, addresToUse);
             newBytes[0] = 0xE9;
@@ -82,7 +82,7 @@ namespace KaydenHunterCheat
                 return VirtAlloc;
 
             //MessageBox.Show(VirtAlloc.ToString() + " | " + Marshal.GetLastWin32Error()); // Show 0 | 487
-            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0xB, module.BaseAddress + 0x43241b);
+            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0xB, module.BaseAddress + 0x441DE5);
             bool status = mem.WriteByteArray(VirtAlloc, new byte[] { 0xC7, 0x84, 0x8B, 0x68, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xE9, jmpReltiveBytes[0], jmpReltiveBytes[1], jmpReltiveBytes[2], jmpReltiveBytes[3], 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
             if(status != true)
             {

@@ -66,7 +66,7 @@ namespace KaydenHunterCheat
                 return VirtAlloc;
 
             //MessageBox.Show(VirtAlloc.ToString() + " | " + Marshal.GetLastWin32Error()); // Show 0 | 487
-            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0x18, module.BaseAddress + 0x468147);// I hate magic numbers
+            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0x18, module.BaseAddress + 0x478777);// I hate magic numbers
             bool status = mem.WriteByteArray(VirtAlloc, new byte[] { 0x49, 0x83, 0xFA, 0x01, 0x75, 0x0B, 0x90, 0x90, 0x90, 0x90, 0x48, 0x89, 0x0D, 0x15,
                 0x00, 0x00, 0x00, 0x0F, 0xB7, 0x81, 0x1C, 0x02, 0x00, 0x00, 0xE9, jmpReltiveBytes[0], jmpReltiveBytes[1], jmpReltiveBytes[2], jmpReltiveBytes[3],
                 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
