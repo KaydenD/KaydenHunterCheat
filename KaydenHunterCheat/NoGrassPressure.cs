@@ -31,7 +31,7 @@ namespace KaydenHunterCheat
             PatternScanner patternscanner = new PatternScanner(hProcess);
             patternscanner.SelectModule(module);
             long timetookms;
-            ulong offset = patternscanner.FindPattern("48 63 05 E9 43 D1 01 E9 ? ? ? ? 90 C3 CC", out timetookms) + 0x7; // The pattern scanner works good and finds correct place
+            ulong offset = patternscanner.FindPattern("48 63 05 F5 78 C5 01 E9 ? ? ? ? 90 C3 CC", out timetookms) + 0x7; // The pattern scanner works good and finds correct place
             if (offset > 0)
             {
                 if (!mem.WriteByteArray((IntPtr)offset, new byte[] { 0xF3, 0x0F, 0x11, 0x4C, 0x81, 0x30 }))
@@ -65,7 +65,7 @@ namespace KaydenHunterCheat
                 return VirtAlloc;
 
             //MessageBox.Show(VirtAlloc.ToString() + " | " + Marshal.GetLastWin32Error()); // Show 0 | 487
-            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0x8, module.BaseAddress + 0x14FA3D);
+            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0x8, module.BaseAddress + 0x15200D);
             bool status = mem.WriteByteArray(VirtAlloc, new byte[] { 0xC7, 0x44, 0x81, 0x30, 0x00, 0x00, 0x00, 0x00, 0xE9, jmpReltiveBytes[0], jmpReltiveBytes[1], jmpReltiveBytes[2], jmpReltiveBytes[3], 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
             if(status != true)
             {

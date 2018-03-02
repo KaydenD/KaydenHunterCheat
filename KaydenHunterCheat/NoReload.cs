@@ -31,10 +31,10 @@ namespace KaydenHunterCheat
             PatternScanner patternscanner = new PatternScanner(hProcess);
             patternscanner.SelectModule(module);
             long timetookms;
-            ulong offset = patternscanner.FindPattern("CC E9 ? ? ? ? 90 C3 CC", out timetookms) + 0x1; // The pattern scanner works good and finds correct place
+            ulong offset = patternscanner.FindPattern("C3 CC CC CC CC E9 ? ? ? ? 90 C3 CC", out timetookms) + 0x5; // The pattern scanner works good and finds correct place
             if (offset > 0)
             {
-                if (!mem.WriteByteArray((IntPtr)offset, new byte[] { 0x89, 0x91, 0x1C, 0x02, 0x00, 0x00 }))
+                if (!mem.WriteByteArray((IntPtr)offset, new byte[] { 0x89, 0x91, 0x14, 0x02, 0x00, 0x00 }))
                     return false;
             }
             else { return false; }
@@ -49,7 +49,7 @@ namespace KaydenHunterCheat
             PatternScanner patternscanner = new PatternScanner(hProcess);
             patternscanner.SelectModule(module);
             long timetookms;
-            ulong offset = patternscanner.FindPattern("CC 89 91 1C 02 00 00 C3", out timetookms) + 0x1; // The pattern scanner works good and finds correct place
+            ulong offset = patternscanner.FindPattern("C3 CC CC CC CC 89 91 14 02 00 00 C3", out timetookms) + 0x5; // The pattern scanner works good and finds correct place
             byte[] newBytes = new byte[6];
             byte[] jmpReltiveBytes = mem.toJmpFormat((IntPtr)offset, addresToUse);
             newBytes[0] = 0xE9;
@@ -65,7 +65,7 @@ namespace KaydenHunterCheat
                 return VirtAlloc;
 
             //MessageBox.Show(VirtAlloc.ToString() + " | " + Marshal.GetLastWin32Error()); // Show 0 | 487
-            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0xC, module.BaseAddress + 0x55AB86);
+            jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0xC, module.BaseAddress + 0x569346);
             bool status = mem.WriteByteArray(VirtAlloc, new byte[] { 0x8B, 0x91, 0x18, 0x02, 0x00, 0x00, 0x89, 0x91, 0x1C, 0x02, 0x00, 0x00, 0xE9, jmpReltiveBytes[0], jmpReltiveBytes[1], jmpReltiveBytes[2], jmpReltiveBytes[3], 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
             if(status != true)
             {
