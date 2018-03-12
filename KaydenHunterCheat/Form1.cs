@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Threading;
 namespace KaydenHunterCheat
 { 
     public partial class Form1 : Form
@@ -25,7 +25,7 @@ namespace KaydenHunterCheat
             settingsPageReady = false
         };
         StatScanner statscan;
-        Timer statRefreshTimer = new Timer();
+        System.Windows.Forms.Timer statRefreshTimer = new System.Windows.Forms.Timer();
         public Form1()
         {
             InitializeComponent();
@@ -266,7 +266,15 @@ namespace KaydenHunterCheat
                 statscan.reset();
                 foreach (IInjection i in listOfInjections)
                 {
-                    i.disable();
+                    if(i.GetType() == typeof(PlayerObjInjector))
+                    {
+                        IInjection temp = listOfInjections.Find((x) => x.GetType() == typeof(FreezeAnimals));
+                        if (temp.enabled)
+                            temp.disable();
+                    }
+
+                    if(i.enabled)
+                        i.disable();
                     i.reset();
                 }
 
@@ -446,7 +454,8 @@ namespace KaydenHunterCheat
                     listOfInjections.Add(new PlayerObjInjector(mem, gameProcess.MainModule, hProcess));
                     index = listOfInjections.Count - 1;
                 }
-                IntPtr temp = listOfInjections[index].enable(mem.findAvilMemArea(baseaddress));
+                IntPtr temp = listOfInjections[index].enable(mem.findAvilMemArea(baseaddress)) + 0x40;
+                Thread.Sleep(1000);
                 index = listOfInjections.FindIndex(x => x.GetType() == typeof(FreezeAnimals));
                 if (index == -1)
                 {
@@ -458,10 +467,10 @@ namespace KaydenHunterCheat
             }
             else
             {
-                int index = listOfInjections.FindIndex(x => x.GetType() == typeof(PlayerObjInjector));
+                int index = listOfInjections.FindIndex(x => x.GetType() == typeof(FreezeAnimals));
                 if (index != -1)
                     listOfInjections[index].disable();
-                index = listOfInjections.FindIndex(x => x.GetType() == typeof(FreezeAnimals));
+                index = listOfInjections.FindIndex(x => x.GetType() == typeof(PlayerObjInjector));
                 if (index != -1)
                     listOfInjections[index].disable();
             }

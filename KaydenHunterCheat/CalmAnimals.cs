@@ -55,6 +55,7 @@ namespace KaydenHunterCheat
             bool output = Win32.VirtualFreeEx(hProcess, address, 0, AllocationType.Release);
             if (output == true)
                 address = IntPtr.Zero;
+            enabled = false;
             return output;
         }
 
@@ -91,7 +92,7 @@ namespace KaydenHunterCheat
             }
 
             address = VirtAlloc;
-
+            enabled = true;
             return VirtAlloc;
         }
 

@@ -39,6 +39,7 @@ namespace KaydenHunterCheat
             }
             else { return false; }
             address = IntPtr.Zero;
+            enabled = false;
             return true;
         }
 
@@ -51,7 +52,7 @@ namespace KaydenHunterCheat
             mem.WriteByteArray((IntPtr)offset, new byte[] { 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 }); // The memory class works too
 
             address = (IntPtr)offset;
-
+            enabled = true;
             return address;
         }
 

@@ -71,6 +71,21 @@ namespace KaydenHunterCheat
             return instuctloc + jew;
         }
 
+
+       public byte[] toMovFormat(IntPtr instrutAddres, IntPtr target)
+        {
+            byte[] bytearray = BitConverter.GetBytes((ulong)target - (ulong)(instrutAddres + 0x6));
+
+            return new byte[] { bytearray[0], bytearray[1], bytearray[2], bytearray[3] };
+        }
+
+        public IntPtr fromMovFormat(IntPtr instrutAddres, byte[] jmpStuff)
+        {
+            int jew = BitConverter.ToInt32(jmpStuff, 0);
+            IntPtr instuctloc = instrutAddres + 0x6;
+            return instuctloc + jew;
+        }
+
         public byte[] ReadByteArray(IntPtr pOffset, uint pSize)
         {
             if (hProcess == IntPtr.Zero)

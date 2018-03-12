@@ -41,6 +41,7 @@ namespace KaydenHunterCheat
             bool output = Win32.VirtualFreeEx(hProcess, address, 0, AllocationType.Release);
             if (output == true)
                 address = IntPtr.Zero;
+            enabled = false;
             return output;
         }
 
@@ -68,7 +69,7 @@ namespace KaydenHunterCheat
             //MessageBox.Show(VirtAlloc.ToString() + " | " + Marshal.GetLastWin32Error()); // Show 0 | 487
             jmpReltiveBytes = mem.toJmpFormat(addresToUse + 0x17, module.BaseAddress + 0x6F3F01);// I hate magic numbers
             bool status = mem.WriteByteArray(VirtAlloc, new byte[] { 0x51, 0x48, 0x8B, 0x8B, 0xC8, 0x01, 0x00, 0x00, 0x48, 0x89, 0x0D, 0x31, 0x00, 0x00, 0x00, 0x59, 0x48, 0x8B, 0x8B, 0x58, 0x02, 0x00, 0x00,
-                0xE9, 0xE5, 0x3E, 0x70, 0x00,
+                0xE9, jmpReltiveBytes[0], jmpReltiveBytes[1], jmpReltiveBytes[2], jmpReltiveBytes[3],
                 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90 });
             if(status != true)
             {
@@ -77,7 +78,7 @@ namespace KaydenHunterCheat
             }
 
             address = VirtAlloc;
-
+            enabled = true;
             return VirtAlloc;
         }
 
