@@ -66,6 +66,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FreezeAnimals.cs" />
+    <Compile Include="PlayerObjInjector.cs" />
     <Compile Include="NoMapBorders.cs" />
     <Compile Include="NoGrassPressure.cs" />
     <Compile Include="NoReload.cs" />

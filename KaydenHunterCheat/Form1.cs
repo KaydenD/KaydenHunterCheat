@@ -432,6 +432,40 @@ namespace KaydenHunterCheat
         {
 
         }
+
+        private void FreezeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!gameOpen)
+                return;
+
+            if (FreezeCheckBox.CheckState == CheckState.Checked)
+            {
+                int index = listOfInjections.FindIndex(x => x.GetType() == typeof(PlayerObjInjector));
+                if (index == -1)
+                {
+                    listOfInjections.Add(new PlayerObjInjector(mem, gameProcess.MainModule, hProcess));
+                    index = listOfInjections.Count - 1;
+                }
+                IntPtr temp = listOfInjections[index].enable(mem.findAvilMemArea(baseaddress));
+                index = listOfInjections.FindIndex(x => x.GetType() == typeof(FreezeAnimals));
+                if (index == -1)
+                {
+                    listOfInjections.Add(new FreezeAnimals(mem, gameProcess.MainModule, hProcess));
+                    index = listOfInjections.Count - 1;
+                }
+                listOfInjections[index].enable(mem.findAvilMemArea(baseaddress), (ulong)temp);
+
+            }
+            else
+            {
+                int index = listOfInjections.FindIndex(x => x.GetType() == typeof(PlayerObjInjector));
+                if (index != -1)
+                    listOfInjections[index].disable();
+                index = listOfInjections.FindIndex(x => x.GetType() == typeof(FreezeAnimals));
+                if (index != -1)
+                    listOfInjections[index].disable();
+            }
+        }
     }
 
     struct applySettings

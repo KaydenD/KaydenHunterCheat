@@ -67,6 +67,7 @@
             this.StatUpdateint = new System.Windows.Forms.TextBox();
             this.AutoUpdateStatCheckBox = new System.Windows.Forms.CheckBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.FreezeCheckBox = new System.Windows.Forms.CheckBox();
             this.TabControls.SuspendLayout();
             this.StatsPage.SuspendLayout();
             this.InjectPage.SuspendLayout();
@@ -290,6 +291,7 @@
             // 
             // InjectPage
             // 
+            this.InjectPage.Controls.Add(this.FreezeCheckBox);
             this.InjectPage.Controls.Add(this.NoGrassPressureCheckBox);
             this.InjectPage.Controls.Add(this.NoMapBorderCheckBox);
             this.InjectPage.Controls.Add(this.BetterVegCheckBox);
@@ -457,6 +459,17 @@
             this.AutoUpdateStatCheckBox.UseVisualStyleBackColor = true;
             this.AutoUpdateStatCheckBox.CheckedChanged += new System.EventHandler(this.AutoUpdateStatCheckBox_CheckedChanged);
             // 
+            // FreezeCheckBox
+            // 
+            this.FreezeCheckBox.AutoSize = true;
+            this.FreezeCheckBox.Location = new System.Drawing.Point(200, 116);
+            this.FreezeCheckBox.Name = "FreezeCheckBox";
+            this.FreezeCheckBox.Size = new System.Drawing.Size(97, 17);
+            this.FreezeCheckBox.TabIndex = 9;
+            this.FreezeCheckBox.Text = "Freeze Animals";
+            this.FreezeCheckBox.UseVisualStyleBackColor = true;
+            this.FreezeCheckBox.CheckedChanged += new System.EventHandler(this.FreezeCheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -519,6 +532,7 @@
         private System.Windows.Forms.Button SettingsApply;
         private System.Windows.Forms.Button CloseCheatBtn;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox FreezeCheckBox;
     }
 }
 

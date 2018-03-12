@@ -44,7 +44,7 @@ namespace KaydenHunterCheat
             return output;
         }
 
-        public IntPtr enable(IntPtr addresToUse)
+        public IntPtr enable(IntPtr addresToUse, ulong playerObject = 0)
         {
             PatternScanner patternscanner = new PatternScanner(hProcess);
             patternscanner.SelectModule(module);
